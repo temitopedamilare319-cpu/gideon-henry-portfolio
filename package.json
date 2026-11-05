@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "build": "node build.mjs",
     "start": "node --env-file=.env.local index.ts"
   },
   "keywords": [],
