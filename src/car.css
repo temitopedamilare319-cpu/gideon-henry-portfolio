@@ -1,0 +1,1238 @@
+@import "tailwindcss";
+
+body.aeron-body {
+  min-width: 320px;
+  margin: 0;
+  background: #10120f;
+  color: #f0f1e8;
+  font-family: "Inter Tight", "DM Sans", sans-serif;
+}
+
+.aeron-page {
+  --aeron-bg: #10120f;
+  --aeron-paper: #f0f1e8;
+  --aeron-muted: #a7aa9e;
+  --aeron-lime: #c4ff7b;
+  --aeron-line: rgb(240 241 232 / 17%);
+  min-height: 100vh;
+  overflow: clip;
+  background: var(--aeron-bg);
+  color: var(--aeron-paper);
+  font-family: "Inter Tight", "DM Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.aeron-page *,
+.aeron-page *::before,
+.aeron-page *::after {
+  box-sizing: border-box;
+}
+
+.aeron-page button,
+.aeron-page a {
+  color: inherit;
+  font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.aeron-page button {
+  cursor: pointer;
+}
+
+.aeron-page a {
+  text-decoration: none;
+}
+
+.aeron-page a:focus-visible,
+.aeron-page button:focus-visible {
+  outline: 2px solid var(--aeron-lime);
+  outline-offset: 4px;
+}
+
+.aeron-skip-link {
+  position: fixed;
+  z-index: 20;
+  top: 12px;
+  left: 12px;
+  padding: 10px 15px;
+  transform: translateY(-160%);
+  background: var(--aeron-lime);
+  color: #10120f !important;
+}
+
+.aeron-skip-link:focus {
+  transform: translateY(0);
+}
+
+.aeron-story {
+  position: relative;
+  height: 330svh;
+  background: #10120f;
+}
+
+.aeron-stage {
+  position: sticky;
+  z-index: 0;
+  top: 0;
+  height: 100svh;
+  min-height: 580px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 71% 64%, rgb(88 113 60 / 15%), transparent 42%),
+    radial-gradient(ellipse at 16% 12%, rgb(255 255 255 / 4%), transparent 38%),
+    #10120f;
+}
+
+.aeron-stage::before,
+.aeron-stage::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.aeron-stage::before {
+  opacity: .19;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.aeron-stage::after {
+  z-index: 1;
+  background: linear-gradient(180deg, rgb(9 11 8 / 15%), transparent 23%, transparent 76%, rgb(9 11 8 / 26%));
+}
+
+.aeron-stage-grid {
+  position: absolute;
+  z-index: -1;
+  right: -14vw;
+  bottom: 13vh;
+  left: -14vw;
+  height: 37vh;
+  opacity: .14;
+  background-image:
+    linear-gradient(rgb(220 232 202 / 14%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(220 232 202 / 14%) 1px, transparent 1px);
+  background-size: 76px 76px;
+  transform: perspective(350px) rotateX(63deg) scale(1.6);
+  transform-origin: center bottom;
+  mask-image: linear-gradient(transparent, black 44%, transparent);
+}
+
+.aeron-header {
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 81px;
+  padding: 0 5.5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid rgb(240 241 232 / 11%);
+}
+
+.aeron-wordmark {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: .16em;
+}
+
+.aeron-mark {
+  width: 23px;
+  height: 23px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgb(196 255 123 / 70%);
+  color: var(--aeron-lime);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.08em;
+}
+
+.aeron-model-label {
+  justify-self: center;
+  color: rgb(240 241 232 / 52%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .17em;
+}
+
+.aeron-nav {
+  position: relative;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: clamp(17px, 2.8vw, 39px);
+}
+
+.aeron-nav > a,
+.aeron-nav > button {
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: rgb(240 241 232 / 68%) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: .13em;
+  transition: color 250ms ease;
+}
+
+.aeron-nav > a:hover,
+.aeron-nav > button:hover {
+  color: var(--aeron-lime) !important;
+}
+
+.aeron-nav > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.aeron-nav > button span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.aeron-menu {
+  position: absolute;
+  top: calc(100% + 17px);
+  right: 0;
+  width: 220px;
+  padding: 8px 17px;
+  display: grid;
+  border: 1px solid var(--aeron-line);
+  background: rgb(16 18 15 / 96%);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 28%);
+  backdrop-filter: blur(16px);
+}
+
+.aeron-menu a {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--aeron-line);
+  color: var(--aeron-paper) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: .13em;
+}
+
+.aeron-menu a:last-child {
+  border-bottom: 0;
+}
+
+.aeron-menu a:hover {
+  color: var(--aeron-lime) !important;
+}
+
+.aeron-story-copy {
+  position: absolute;
+  z-index: 4;
+  top: 20.5vh;
+  left: 11vw;
+  width: min(41vw, 530px);
+  pointer-events: none;
+}
+
+.aeron-intro-copy,
+.aeron-exploded-copy {
+  position: absolute;
+  inset: 0 auto auto 0;
+  transition: none;
+}
+
+.aeron-intro-copy {
+  opacity: var(--intro-opacity, 1);
+}
+
+.aeron-exploded-copy {
+  opacity: var(--exploded-opacity, 0);
+}
+
+.aeron-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 21px;
+  color: rgb(240 241 232 / 63%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .17em;
+}
+
+.aeron-eyebrow > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--aeron-lime);
+  box-shadow: 0 0 13px rgb(196 255 123 / 60%);
+}
+
+.aeron-story-copy h1,
+.aeron-story-copy h2,
+.aeron-specs-heading h2,
+.aeron-design h2 {
+  margin: 0;
+  font-size: clamp(69px, 10.1vw, 148px);
+  font-weight: 500;
+  line-height: .78;
+  letter-spacing: -.105em;
+}
+
+.aeron-story-copy h1 em,
+.aeron-story-copy h2 em,
+.aeron-specs-heading h2 em,
+.aeron-design h2 em {
+  color: var(--aeron-lime);
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+}
+
+.aeron-intro-note,
+.aeron-exploded-copy > p:last-child {
+  margin: 24px 0 0;
+  color: rgb(240 241 232 / 69%);
+  font-size: clamp(12px, 1.05vw, 15px);
+  line-height: 1.8;
+}
+
+.aeron-hero-link {
+  margin-top: 21px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--aeron-lime) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: .14em;
+  pointer-events: auto;
+}
+
+.aeron-hero-link svg,
+.aeron-design-link svg {
+  width: 18px;
+  transition: transform 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.aeron-hero-link:hover svg,
+.aeron-design-link:hover svg {
+  transform: translateX(5px);
+}
+
+.aeron-exploded-copy h2 {
+  font-size: clamp(63px, 8.6vw, 126px);
+}
+
+.aeron-car-scene {
+  position: absolute;
+  z-index: 3;
+  top: 33.5vh;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: min(61vh, 630px);
+  pointer-events: none;
+  perspective: 1200px;
+}
+
+.aeron-car-glow {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: min(72vw, 1000px);
+  height: 24vh;
+  border-radius: 50%;
+  background: rgb(153 198 101 / 11%);
+  filter: blur(60px);
+  transform: translate(-50%, 0);
+}
+
+.aeron-vehicle {
+  position: relative;
+  z-index: 1;
+  width: min(94vw, 1320px);
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.aeron-car-art {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 20px 46px rgb(0 0 0 / 29%));
+}
+
+.aeron-part,
+.aeron-wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.aeron-stage-meta {
+  position: absolute;
+  z-index: 5;
+  right: 5.5vw;
+  bottom: 8.5vh;
+  left: 5.5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: end;
+}
+
+.aeron-scroll-prompt {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgb(240 241 232 / 61%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.aeron-scroll-indicator {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(196 255 123 / 48%);
+  border-radius: 50%;
+}
+
+.aeron-scroll-indicator::after {
+  width: 4px;
+  height: 4px;
+  border-right: 1px solid var(--aeron-lime);
+  border-bottom: 1px solid var(--aeron-lime);
+  content: "";
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.aeron-intro-prompt,
+.aeron-exploded-prompt {
+  position: absolute;
+  margin-left: 34px;
+  transition: opacity 200ms ease;
+}
+
+.aeron-intro-prompt {
+  opacity: var(--intro-opacity, 1);
+}
+
+.aeron-exploded-prompt {
+  opacity: var(--exploded-opacity, 0);
+}
+
+.aeron-meta-center {
+  justify-self: center;
+  padding-bottom: 10px;
+  color: rgb(240 241 232 / 32%);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-align: center;
+}
+
+.aeron-stage-spec {
+  justify-self: end;
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+
+.aeron-stage-spec strong {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.06em;
+}
+
+.aeron-stage-spec span {
+  color: rgb(240 241 232 / 47%);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.aeron-progress-track {
+  position: absolute;
+  z-index: 5;
+  right: 5.5vw;
+  bottom: 0;
+  left: 5.5vw;
+  height: 2px;
+  background: rgb(240 241 232 / 13%);
+}
+
+.aeron-progress-track > span {
+  width: calc(var(--scroll-progress, 0) * 100%);
+  height: 100%;
+  display: block;
+  background: var(--aeron-lime);
+  box-shadow: 0 0 13px rgb(196 255 123 / 42%);
+}
+
+.aeron-disclaimer {
+  position: absolute;
+  z-index: 5;
+  right: 5.5vw;
+  bottom: 18px;
+  color: rgb(240 241 232 / 24%);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: .11em;
+  text-align: right;
+}
+
+.aeron-callouts {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 120ms linear;
+}
+
+.aeron-callout {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 25px 38px auto;
+  align-items: center;
+  gap: 8px;
+  color: var(--aeron-paper);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.aeron-callout > span {
+  color: var(--aeron-lime);
+  font-size: 8px;
+}
+
+.aeron-callout > i {
+  position: relative;
+  width: 38px;
+  height: 1px;
+  background: rgb(196 255 123 / 73%);
+}
+
+.aeron-callout > i::after {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--aeron-lime);
+  content: "";
+}
+
+.aeron-callout-battery {
+  top: 68%;
+  left: 16%;
+}
+
+.aeron-callout-cabin {
+  top: 28%;
+  left: 66%;
+}
+
+.aeron-callout-drive {
+  top: 63%;
+  left: 73%;
+}
+
+.aeron-callout-chassis {
+  top: 78%;
+  left: 43%;
+}
+
+.aeron-specs {
+  position: relative;
+  padding: 120px 10vw 145px;
+  background: #f0f1e8;
+  color: #171a14;
+}
+
+.aeron-section-topline {
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid rgb(23 26 20 / 24%);
+  color: rgb(23 26 20 / 59%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.aeron-specs-heading {
+  padding: 67px 0 86px;
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  align-items: end;
+  gap: 9vw;
+}
+
+.aeron-specs-heading h2 {
+  font-size: clamp(62px, 8.3vw, 116px);
+}
+
+.aeron-specs-heading h2 em {
+  color: #6f934a;
+}
+
+.aeron-specs-heading > p {
+  max-width: 390px;
+  margin: 0 0 6px;
+  color: rgb(23 26 20 / 67%);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.aeron-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgb(23 26 20 / 26%);
+  border-bottom: 1px solid rgb(23 26 20 / 26%);
+}
+
+.aeron-spec-grid article {
+  min-height: 190px;
+  padding: 24px 28px 28px 0;
+  display: grid;
+  align-content: space-between;
+  gap: 23px;
+  border-right: 1px solid rgb(23 26 20 / 19%);
+}
+
+.aeron-spec-grid article + article {
+  padding-left: 28px;
+}
+
+.aeron-spec-grid article:last-child {
+  border-right: 0;
+}
+
+.aeron-spec-grid article > span {
+  color: rgb(23 26 20 / 54%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.aeron-spec-grid strong {
+  font-size: clamp(45px, 6vw, 75px);
+  font-weight: 500;
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+.aeron-spec-grid strong small {
+  font-size: .35em;
+  font-weight: 500;
+  letter-spacing: -.04em;
+}
+
+.aeron-spec-grid p {
+  max-width: 245px;
+  margin: 0;
+  color: rgb(23 26 20 / 65%);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.aeron-design {
+  position: relative;
+  min-height: 700px;
+  padding: 128px 10vw 70px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 83% 51%, rgb(145 184 97 / 13%), transparent 30%),
+    #171a15;
+}
+
+.aeron-design .aeron-eyebrow {
+  position: relative;
+  z-index: 2;
+}
+
+.aeron-design h2 {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(76px, 10.2vw, 145px);
+}
+
+.aeron-design h2 em {
+  color: var(--aeron-lime);
+}
+
+.aeron-design > p {
+  position: relative;
+  z-index: 2;
+  max-width: 425px;
+  margin: 32px 0 0;
+  color: rgb(240 241 232 / 66%);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.aeron-design-link {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  margin-top: 30px;
+  padding: 15px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  border-bottom: 1px solid rgb(196 255 123 / 62%);
+  color: var(--aeron-lime) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: .14em;
+}
+
+.aeron-design-orbit {
+  position: absolute;
+  top: 15%;
+  right: -9%;
+  width: min(56vw, 740px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(196 255 123 / 14%);
+  border-radius: 50%;
+  transform: rotate(-23deg) scaleY(.65);
+}
+
+.aeron-design-orbit::before,
+.aeron-design-orbit::after {
+  position: absolute;
+  inset: 10%;
+  border: 1px solid rgb(196 255 123 / 12%);
+  border-radius: 50%;
+  content: "";
+}
+
+.aeron-design-orbit::after {
+  inset: 23%;
+  border-color: rgb(240 241 232 / 11%);
+}
+
+.aeron-design-orbit > span {
+  position: absolute;
+  top: 14%;
+  left: 30%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--aeron-lime);
+  box-shadow: 0 0 25px rgb(196 255 123 / 75%);
+}
+
+.aeron-design-orbit > span:nth-child(2) {
+  top: 60%;
+  left: 83%;
+  width: 6px;
+  height: 6px;
+}
+
+.aeron-design-orbit > span:nth-child(3) {
+  top: 83%;
+  left: 37%;
+  width: 4px;
+  height: 4px;
+}
+
+.aeron-design-foot {
+  position: absolute;
+  right: 10vw;
+  bottom: 31px;
+  left: 10vw;
+  padding-top: 14px;
+  border-top: 1px solid var(--aeron-line);
+  color: rgb(240 241 232 / 38%);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.aeron-footer {
+  min-height: 80px;
+  padding: 18px 5.5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 15px;
+  background: #10120f;
+}
+
+.aeron-footer > span,
+.aeron-footer > a:last-child {
+  color: rgb(240 241 232 / 46%);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: .13em;
+}
+
+.aeron-footer > span {
+  justify-self: center;
+  text-align: center;
+}
+
+.aeron-footer > a:last-child {
+  justify-self: end;
+}
+
+.aeron-footer > a:last-child:hover {
+  color: var(--aeron-lime);
+}
+
+.aeron-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 68% 63%, rgb(145 184 97 / 23%), transparent 47%),
+    #11140f;
+}
+
+.aeron-preview-copy {
+  position: absolute;
+  z-index: 2;
+  top: 16%;
+  left: 8%;
+  display: grid;
+  gap: 5px;
+}
+
+.aeron-preview-copy > span,
+.aeron-preview-copy > small {
+  color: rgb(240 241 232 / 64%);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.aeron-preview-copy strong {
+  color: #f0f1e8;
+  font-size: clamp(22px, 3.2vw, 39px);
+  font-weight: 500;
+  line-height: .86;
+  letter-spacing: -.07em;
+}
+
+.aeron-preview-copy strong em {
+  color: #c4ff7b;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+}
+
+.aeron-preview-copy > small {
+  margin-top: 5px;
+  font-size: 5px;
+}
+
+.aeron-preview-car {
+  position: absolute;
+  right: -1%;
+  bottom: 8%;
+  width: 86%;
+  filter: drop-shadow(0 10px 19px rgb(0 0 0 / 35%));
+}
+
+.aeron-preview-mark {
+  position: absolute;
+  right: 8%;
+  bottom: 8%;
+  color: rgb(240 241 232 / 52%);
+  font-size: 6px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+@media (max-width: 900px) {
+  .aeron-header {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .aeron-nav {
+    gap: 18px;
+  }
+
+  .aeron-nav > a {
+    display: none;
+  }
+
+  .aeron-story-copy {
+    top: 20vh;
+    left: 7vw;
+    width: 56vw;
+  }
+
+  .aeron-story-copy h1 {
+    font-size: clamp(78px, 12vw, 112px);
+  }
+
+  .aeron-car-scene {
+    top: 42vh;
+    height: 50vh;
+  }
+
+  .aeron-vehicle {
+    width: 115vw;
+    margin-left: -7vw;
+  }
+
+  .aeron-callout {
+    grid-template-columns: 20px 24px auto;
+    gap: 6px;
+    font-size: 6px;
+  }
+
+  .aeron-callout > i {
+    width: 24px;
+  }
+
+  .aeron-callout-battery { left: 8%; }
+  .aeron-callout-cabin { left: 66%; }
+  .aeron-callout-drive { left: 68%; }
+  .aeron-callout-chassis { left: 37%; }
+
+  .aeron-specs {
+    padding: 100px 7vw 115px;
+  }
+
+  .aeron-specs-heading {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 54px 0 62px;
+  }
+
+  .aeron-specs-heading > p {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 639px) {
+  .aeron-story {
+    height: 300svh;
+  }
+
+  .aeron-stage {
+    min-height: 620px;
+  }
+
+  .aeron-header {
+    height: 67px;
+    padding-inline: 17px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .aeron-wordmark {
+    font-size: 11px !important;
+  }
+
+  .aeron-mark {
+    width: 21px;
+    height: 21px;
+  }
+
+  .aeron-model-label {
+    display: none;
+  }
+
+  .aeron-nav {
+    gap: 13px;
+  }
+
+  .aeron-nav > button {
+    font-size: 8px !important;
+  }
+
+  .aeron-story-copy {
+    top: 17.5vh;
+    left: 7vw;
+    width: 82vw;
+  }
+
+  .aeron-eyebrow {
+    margin-bottom: 20px;
+    font-size: 7px;
+  }
+
+  .aeron-story-copy h1 {
+    font-size: clamp(72px, 20vw, 101px);
+  }
+
+  .aeron-intro-note,
+  .aeron-exploded-copy > p:last-child {
+    margin-top: 17px;
+    font-size: 11px;
+  }
+
+  .aeron-hero-link {
+    margin-top: 16px;
+    font-size: 7px !important;
+  }
+
+  .aeron-exploded-copy h2 {
+    font-size: clamp(64px, 17vw, 88px);
+  }
+
+  .aeron-car-scene {
+    top: 43vh;
+    height: 44vh;
+  }
+
+  .aeron-vehicle {
+    width: 151vw;
+    margin-left: -26vw;
+  }
+
+  .aeron-car-glow {
+    top: 35%;
+    width: 95vw;
+    height: 16vh;
+    filter: blur(37px);
+  }
+
+  .aeron-callout {
+    grid-template-columns: 15px 17px auto;
+    gap: 4px;
+    font-size: 5px;
+    letter-spacing: .07em;
+  }
+
+  .aeron-callout > span {
+    font-size: 6px;
+  }
+
+  .aeron-callout > i {
+    width: 17px;
+  }
+
+  .aeron-callout-battery {
+    top: 75%;
+    left: 4%;
+  }
+
+  .aeron-callout-cabin {
+    top: 26%;
+    left: 63%;
+  }
+
+  .aeron-callout-drive {
+    top: 70%;
+    left: 67%;
+  }
+
+  .aeron-callout-chassis {
+    top: 85%;
+    left: 34%;
+  }
+
+  .aeron-stage-meta {
+    right: 17px;
+    bottom: 8vh;
+    left: 17px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .aeron-scroll-prompt {
+    font-size: 6px;
+    letter-spacing: .08em;
+  }
+
+  .aeron-scroll-indicator {
+    width: 19px;
+    height: 19px;
+  }
+
+  .aeron-intro-prompt,
+  .aeron-exploded-prompt {
+    margin-left: 30px;
+  }
+
+  .aeron-exploded-prompt {
+    max-width: 205px;
+    line-height: 1.4;
+  }
+
+  .aeron-meta-center {
+    display: none;
+  }
+
+  .aeron-stage-spec strong {
+    font-size: 22px;
+  }
+
+  .aeron-stage-spec span {
+    font-size: 6px;
+  }
+
+  .aeron-progress-track {
+    right: 17px;
+    left: 17px;
+  }
+
+  .aeron-disclaimer {
+    right: 17px;
+    bottom: 13px;
+    left: 17px;
+    font-size: 5px;
+  }
+
+  .aeron-specs {
+    padding: 75px 22px 85px;
+  }
+
+  .aeron-section-topline {
+    font-size: 6px;
+    letter-spacing: .1em;
+  }
+
+  .aeron-section-topline span:last-child {
+    text-align: right;
+  }
+
+  .aeron-specs-heading {
+    gap: 21px;
+    padding: 42px 0 45px;
+  }
+
+  .aeron-specs-heading h2 {
+    font-size: clamp(54px, 15vw, 76px);
+  }
+
+  .aeron-specs-heading > p {
+    font-size: 12px;
+  }
+
+  .aeron-spec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aeron-spec-grid article,
+  .aeron-spec-grid article + article {
+    min-height: 130px;
+    padding: 18px 0;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 7px 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgb(23 26 20 / 19%);
+  }
+
+  .aeron-spec-grid article:last-child {
+    border-bottom: 0;
+  }
+
+  .aeron-spec-grid article > span {
+    grid-column: 1 / -1;
+    font-size: 7px;
+  }
+
+  .aeron-spec-grid strong {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 51px;
+  }
+
+  .aeron-spec-grid p {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 9px;
+  }
+
+  .aeron-design {
+    min-height: 600px;
+    padding: 85px 23px 65px;
+  }
+
+  .aeron-design h2 {
+    font-size: clamp(69px, 18vw, 92px);
+  }
+
+  .aeron-design > p {
+    max-width: 335px;
+    margin-top: 25px;
+    font-size: 12px;
+  }
+
+  .aeron-design-orbit {
+    top: 37%;
+    right: -42%;
+    width: 94vw;
+  }
+
+  .aeron-design-foot {
+    right: 23px;
+    bottom: 22px;
+    left: 23px;
+    font-size: 6px;
+    line-height: 1.7;
+  }
+
+  .aeron-footer {
+    min-height: 83px;
+    padding: 17px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .aeron-footer > span {
+    display: none;
+  }
+
+  .aeron-footer > a:last-child {
+    font-size: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .aeron-story-copy h1 {
+    font-size: 68px;
+  }
+
+  .aeron-car-scene {
+    top: 47vh;
+  }
+
+  .aeron-vehicle {
+    width: 160vw;
+    margin-left: -30vw;
+  }
+
+  .aeron-exploded-prompt {
+    max-width: 174px;
+    font-size: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aeron-page *,
+  .aeron-page *::before,
+  .aeron-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  .aeron-part,
+  .aeron-wheel,
+  .aeron-vehicle {
+    will-change: auto;
+  }
+}

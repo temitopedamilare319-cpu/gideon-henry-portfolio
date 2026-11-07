@@ -31,6 +31,26 @@ const projects = [
     tags: ['Video testimonials', 'Before-after', 'Category shop'],
   },
   {
+    name: 'Cuticle Club',
+    category: 'beauty',
+    label: 'NAIL STUDIO',
+    domain: 'cuticle-club.demo',
+    url: '/nail-studio/',
+    image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85',
+    alt: 'Editorial nail art and manicure studio landing page demo',
+    description: 'A vivid, scroll-led booking experience for a Lagos nail art studio.',
+    tags: ['Nail art', 'Appointments', 'Lagos'],
+  },
+  {
+    name: 'Aeron S1',
+    category: 'automotive',
+    label: 'AUTOMOTIVE / MOTION STUDY',
+    domain: 'aeron-s1.demo',
+    url: '/aeron/',
+    description: 'A fictional electric grand tourer revealed piece by piece as you scroll.',
+    tags: ['Scroll-driven motion', 'Exploded view', 'Electric concept'],
+  },
+  {
     name: 'HelloBot',
     category: 'saas',
     label: 'SAAS',
@@ -80,6 +100,8 @@ const filters = [
   { id: 'saas', label: 'SaaS' },
   { id: 'app', label: 'App' },
   { id: 'real-estate', label: 'Real estate' },
+  { id: 'beauty', label: 'Beauty' },
+  { id: 'automotive', label: 'Automotive' },
 ];
 
 const packages = [
@@ -181,6 +203,27 @@ function ProjectPreview({ project, index }) {
           <small>YOUR ROUTINE, REIMAGINED</small>
         </div>
         <span className="velora-stamp">BEFORE&nbsp; / &nbsp;AFTER</span>
+      </div>
+    );
+  }
+
+  if (project.name === 'Aeron S1') {
+    return (
+      <div className="aeron-preview" aria-hidden="true">
+        <div className="aeron-preview-copy">
+          <span>AERON / ELECTRIC GRAND TOURER</span>
+          <strong>Quietly<br /><em>unreasonable.</em></strong>
+          <small>S1 / DESIGN STUDY</small>
+        </div>
+        <svg viewBox="0 0 520 170" className="aeron-preview-car">
+          <path d="M39 113 69 98l49-10 45-43q13-12 37-12h92q21 0 36 15l39 39 61 12 35 18-11 20H39z" fill="#b9ff74" />
+          <path d="m177 49-39 39 80-2V45h-22q-12 0-19 4m55-4v41l105-2-34-34q-10-9-24-9z" fill="#18211a" />
+          <circle cx="130" cy="127" r="25" fill="#111411" stroke="#dcffc2" strokeWidth="4" />
+          <circle cx="391" cy="127" r="25" fill="#111411" stroke="#dcffc2" strokeWidth="4" />
+          <circle cx="130" cy="127" r="8" fill="#b9ff74" />
+          <circle cx="391" cy="127" r="8" fill="#b9ff74" />
+        </svg>
+        <span className="aeron-preview-mark">SCROLL / 01</span>
       </div>
     );
   }

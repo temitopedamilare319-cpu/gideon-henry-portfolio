@@ -16,7 +16,8 @@
   "dependencies": {
     "ai": "^7.0.159",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "threejs-components": "^0.0.19"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.11",
